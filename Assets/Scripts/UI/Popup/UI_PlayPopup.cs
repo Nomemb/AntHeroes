@@ -124,7 +124,11 @@ public class UI_PlayPopup : UI_Popup
 	/// <param name="tab"></param>
 	public void ShowTab(PlayTab tab)
 	{
-		_tab = tab;
+		if (_tab == tab)
+			_tab = PlayTab.None;
+		else
+			_tab = tab;
+		
 		// 모든 탭 비활성화
 		GetObject((int)GameObjects.TrainingTab).gameObject.SetActive(false);
 		GetObject((int)GameObjects.HeroTab).gameObject.SetActive(false);
@@ -149,6 +153,7 @@ public class UI_PlayPopup : UI_Popup
 		switch (_tab)
 		{
 			case PlayTab.None:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
 				break;
 			
 			case PlayTab.Training:
