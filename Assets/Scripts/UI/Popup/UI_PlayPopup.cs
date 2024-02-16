@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static Define;
 
 public class UI_PlayPopup : UI_Popup
 {
@@ -18,6 +20,7 @@ public class UI_PlayPopup : UI_Popup
 
 	enum Buttons
 	{
+		PlayerInfoButton,
 		TrainingButton,
 		HeroButton,
 		TowerButton,
@@ -41,8 +44,6 @@ public class UI_PlayPopup : UI_Popup
 		TowerBox,
 		SummonBox,
 		ShopBox,
-		MenuBox,
-		
 	}
 
 	enum GameObjects
@@ -52,8 +53,7 @@ public class UI_PlayPopup : UI_Popup
 		TowerTab,
 		SummonTab,
 		ShopTab,
-		MenuTab,
-		
+
 	}
 
 	public enum PlayTab
@@ -69,7 +69,14 @@ public class UI_PlayPopup : UI_Popup
 	// 업그레이드 능력치
 	enum TrainingItems
 	{
-		
+		UI_TrainingItem_BaseAttackPower,
+		UI_TrainingItem_TouchLightningPower,
+		UI_TrainingItem_AttackProportionalTouchLightningAdditionalDamage,
+		UI_TrainingItem_MaxHP,
+		UI_TrainingItem_HPRegen,
+		UI_TrainingItem_AttackSpeed,
+		UI_TrainingItem_CriticalRate,
+		UI_TrainingItem_CriticalDamageIncrease,
 	}
 	PlayTab _tab = PlayTab.None;
 
@@ -85,8 +92,147 @@ public class UI_PlayPopup : UI_Popup
 		BindButton(typeof(Buttons));
 		BindObject(typeof(GameObjects));
 		BindImage(typeof(Images));
+		Bind<UI_TrainingItem>(typeof(TrainingItems));
+		
+		GetButton((int)Buttons.TrainingButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Training));
+		GetButton((int)Buttons.HeroButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Hero));
+		GetButton((int)Buttons.TowerButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Tower));
+		GetButton((int)Buttons.SummonButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Summon));
+		GetButton((int)Buttons.ShopButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Shop));
+		
+		GetButton((int)Buttons.PlayerInfoButton).gameObject.BindEvent(OnClickPlayerInfoButton);
+		
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_BaseAttackPower).SetInfo(UpgradeStatType.BaseAttackPower);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_TouchLightningPower).SetInfo(UpgradeStatType.TouchLightningPower);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackProportionalTouchLightningAdditionalDamage).SetInfo(UpgradeStatType.AttackProportionalTouchLightningAdditionalDamage);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_MaxHP).SetInfo(UpgradeStatType.MaxHP);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_HPRegen).SetInfo(UpgradeStatType.HPRegen);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackSpeed).SetInfo(UpgradeStatType.AttackSpeed);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalRate).SetInfo(UpgradeStatType.CriticalRate);
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalDamageIncrease).SetInfo(UpgradeStatType.CriticalDamageAmplification);
 
+		RefreshUI();
+		StartCoroutine(SaveGame());
+		ShowTab(PlayTab.None);
 		
 		return true;
+	}
+
+	/// <summary>
+	/// 플레이어가 각 탭 눌렀을 때 최상단에 해당 탭을 띄움
+	/// </summary>
+	/// <param name="tab"></param>
+	public void ShowTab(PlayTab tab)
+	{
+		_tab = tab;
+		// 모든 탭 비활성화
+		GetObject((int)GameObjects.TrainingTab).gameObject.SetActive(false);
+		GetObject((int)GameObjects.HeroTab).gameObject.SetActive(false);
+		GetObject((int)GameObjects.TowerTab).gameObject.SetActive(false);
+		GetObject((int)GameObjects.SummonTab).gameObject.SetActive(false);
+		GetObject((int)GameObjects.ShopTab).gameObject.SetActive(false);
+		
+		// 버튼 스프라이트 불러옴
+		GetButton((int)Buttons.TrainingButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_05");
+		GetButton((int)Buttons.HeroButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_06");
+		GetButton((int)Buttons.TowerButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_07");
+		GetButton((int)Buttons.SummonButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_06");
+		GetButton((int)Buttons.ShopButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_08");
+		
+		// 박스 이미지 불러옴
+		GetImage((int)Images.TrainingBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_04");
+		GetImage((int)Images.HeroBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_04");
+		GetImage((int)Images.TowerBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_04");
+		GetImage((int)Images.SummonBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_04");
+		GetImage((int)Images.ShopBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_04");
+
+		switch (_tab)
+		{
+			case PlayTab.None:
+				break;
+			
+			case PlayTab.Training:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
+				GetObject((int)GameObjects.TrainingTab).gameObject.SetActive(true);
+				GetObject((int)GameObjects.TrainingTab).GetComponent<ScrollRect>().ResetVertical();
+				GetButton((int)Buttons.TrainingButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetImage((int)Images.TrainingBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
+				break;
+			
+			case PlayTab.Hero:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
+				GetObject((int)GameObjects.HeroTab).gameObject.SetActive(true);
+				GetButton((int)Buttons.HeroButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetImage((int)Images.HeroBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
+				break;
+			
+			case PlayTab.Tower:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
+				GetObject((int)GameObjects.TowerTab).gameObject.SetActive(true);
+				GetButton((int)Buttons.TowerButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetImage((int)Images.TowerBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
+				break;
+			
+			case PlayTab.Summon:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
+				GetObject((int)GameObjects.SummonTab).gameObject.SetActive(true);
+				GetButton((int)Buttons.SummonButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetImage((int)Images.SummonBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
+				break;
+			
+			case PlayTab.Shop:
+				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
+				GetObject((int)GameObjects.ShopTab).gameObject.SetActive(true);
+				GetButton((int)Buttons.ShopButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetImage((int)Images.ShopBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
+				break;
+			
+		}
+
+	}
+
+	public void RefreshUI()
+	{
+		if (_init == false)
+			return;
+		
+		ShowTab(_tab);
+		RefreshStat();
+		//RefreshMoney();
+		//RefreshTime();
+	}
+
+	public void RefreshStat()
+	{
+		RefreshUpgradeButton();
+		
+	}
+
+	/// <summary>
+	/// 업그레이드 버튼들 정보 갱신
+	/// </summary>
+	private void RefreshUpgradeButton()
+	{
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_BaseAttackPower).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_TouchLightningPower).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackProportionalTouchLightningAdditionalDamage).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_HPRegen).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackSpeed).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalRate).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalDamageIncrease).RefreshUI();
+	}
+
+	private void OnClickPlayerInfoButton()
+	{
+		Managers.Sound.Play(Sound.Effect, "Sound_FolderItemClick");
+		//Managers.UI.ShowPopupUI<UI_PlayerInfoPopup>();
+	}
+	IEnumerator SaveGame(float interval = 1.0f)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(interval);
+			Managers.Game.SaveGame();
+		}
 	}
 }
