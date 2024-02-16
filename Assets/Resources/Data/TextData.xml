@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTextData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TextData ID="1" kor="NoName" />
+  <TextData ID="6001" kor="기본 공격력" />
+  <TextData ID="6011" kor="터치번개 피해" />
+  <TextData ID="6021" kor="공격력 비례 터치번개 추가 피해" />
+  <TextData ID="6031" kor="최대 HP" />
+  <TextData ID="6041" kor="HP 회복" />
+  <TextData ID="6051" kor="공격 속도" />
+  <TextData ID="6061" kor="치명타 확률" />
+  <TextData ID="6071" kor="치명타 피해 증폭" />
+  <TextData ID="20003" kor="업그레이드" />
+</ArrayOfTextData>

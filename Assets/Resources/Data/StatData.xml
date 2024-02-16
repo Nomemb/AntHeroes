@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStatData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <StatData ID="1" type="BaseAttackPower" nameID="6001" price="100" increaseStat="10" increasePriceRate="1.02"/>
+  <StatData ID="2" type="TouchLightningPower" nameID="6011" price="100" increaseStat="10" increasePriceRate="1.01"/>
+  <StatData ID="3" type="AttackProportionalTouchLightningAdditionalDamage" nameID="6021" price="1000" increaseStat="1" increasePriceRate="2"/>
+  <StatData ID="4" type="MaxHP" nameID="6031" price="100" increaseStat="10" increasePriceRate="1.15"/>
+  <StatData ID="5" type="HPRegen" nameID="6041" price="100" increaseStat="1" increasePriceRate="1.15"/>
+  <StatData ID="6" type="AttackSpeed" nameID="6051" price="100" increaseStat="1" increasePriceRate="1.5"/>
+  <StatData ID="7" type="CriticalRate" nameID="6061" price="100" increaseStat="1" increasePriceRate="1.7"/>
+  <StatData ID="8" type="CriticalDamageAmplification" nameID="6071" price="100" increaseStat="1" increasePriceRate="1.5"/>
+</ArrayOfStatData>
