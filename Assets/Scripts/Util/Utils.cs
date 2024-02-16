@@ -53,4 +53,33 @@ public class Utils
 
         return null;
     }
+
+    public static int GetStatValue(UpgradeStatType stat)
+    {
+        switch (stat)
+        {
+            case UpgradeStatType.BaseAttackPower:
+                return Managers.Game.BaseAttackPower;
+            case UpgradeStatType.TouchLightningPower:
+                return Managers.Game.TouchLightningPower;
+            case UpgradeStatType.AttackProportionalTouchLightningAdditionalDamage:
+                return Managers.Game.AttackProportionalTouchLightningAdditionalDamage;
+            case UpgradeStatType.MaxHP:
+                return Managers.Game.MaxHP;
+            case UpgradeStatType.HPRegen:
+                return Managers.Game.HPRegen;
+            case UpgradeStatType.AttackSpeed:
+                return Managers.Game.AttackSpeed;
+            case UpgradeStatType.CriticalRate:
+                return Managers.Game.CriticalRate;
+            case UpgradeStatType.CriticalDamageAmplification:
+                return Managers.Game.CriticalDamageAmplification;
+        }
+        return 0;
+    }
+
+    public static string GetMoneyString(int value)
+    {
+        return $"{value}";
+    }
 }
