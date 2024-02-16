@@ -1,22 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
+using System.IO;
 
 public class GameData
 {
 	public int ServerNum;
 	public string Name;
-	public int BaseAttackPower;  // 기본 공격력
-	public int PvpAttackPower;  // Pvp 공격력
-	public int FishAttackPower;  // 생선 공격력
-	public int CannonAttackPower;  // 대포 공격력
-	public float AttackAmplification;  // 공격력 증폭
-	public float SkillDamageAmplification;  // 스킬 피해 증폭
-	public int NormalDamageAmplification;  // 일반 피해 증폭
-	public int FishDamageAmplification;  // 생선 피해 증폭
-	public int TotalDamageIncrease;  // 모든 피해량 증가
-	public int TouchLightningDamage;  // 터치번개 피해
-	public int AttackProportionalTouchLightningAdditionalDamage;  // 공격력 비례 터치번개 추가 피해
+
+	#region 공격
+	public int BaseAttackPower;									// 기본 공격력
+	public int PvpAttackPower;									// Pvp 공격력
+	public int FishAttackPower;									// 생선 공격력
+	public int CannonAttackPower;								// 대포 공격력
+	public float AttackAmplification;							// 공격력 증폭
+	public float SkillDamageAmplification;						// 스킬 피해 증폭
+	public int NormalDamageAmplification;						// 일반 피해 증폭
+	public int FishDamageAmplification;							// 생선 피해 증폭
+	public int TotalDamageIncrease;								// 모든 피해량 증가
+	public int TouchLightningPower;								// 터치번개 피해
+	public int AttackProportionalTouchLightningAdditionalDamage;// 공격력 비례 터치번개 추가 피해
+	  #endregion
+
+	#region 방어_회복
+	public int MaxHP;											// 최대 체력	
+	public int HPRegen;											// HP 회복
+	public int MaxHPAmplification;								// 최대 체력 증폭
+  #endregion
+
+	#region 명중_치명타
+	public int CriticalRate;									// 치명타 확률
+	public int CriticalDamageAmplification;						// 치명타 피해 증폭
+  #endregion
+
+	#region 속도_생산_기타
+	public int AttackSpeed;										// 공격 속도
+
+	#region 재화
+	public int Money;
+	public int Diamond;
+  #endregion
+  #endregion
 }
 
 
@@ -93,10 +118,10 @@ public class GameManagerEx
 		set { _gameData.TotalDamageIncrease = value; }
 	}
 	
-	public int TouchLightningDamage
+	public int TouchLightningPower
 	{
-		get { return _gameData.TouchLightningDamage; }
-		set { _gameData.TouchLightningDamage = value; }
+		get { return _gameData.TouchLightningPower; }
+		set { _gameData.TouchLightningPower = value; }
 	}
 	
 	public int AttackProportionalTouchLightningAdditionalDamage
@@ -105,5 +130,89 @@ public class GameManagerEx
 		set { _gameData.AttackProportionalTouchLightningAdditionalDamage = value; }
 	}
 	
+	
+	
   #endregion
+
+	#region 방어_회복
+	public int MaxHP
+	{
+		get { return _gameData.MaxHP; }
+		set { _gameData.MaxHP = value; }
+	}
+	public int HPRegen
+	{
+		get { return _gameData.HPRegen; }
+		set { _gameData.HPRegen = value; }
+	}
+	public int MaxHPAmplification
+	{
+		get { return _gameData.MaxHPAmplification; }
+		set { _gameData.MaxHPAmplification = value; }
+	}
+	
+  #endregion
+
+	#region 명중_치명타
+	public int CriticalRate
+	{
+		get { return _gameData.CriticalRate; }
+		set { _gameData.CriticalRate = value; }
+	}
+	public int CriticalDamageAmplification
+	{
+		get { return _gameData.CriticalDamageAmplification; }
+		set { _gameData.CriticalDamageAmplification = value; }
+	}
+	
+  #endregion
+
+	#region 속도_생산_기타
+	public int AttackSpeed
+	{
+		get { return _gameData.AttackSpeed; }
+		set { _gameData.AttackSpeed = value; }
+	}
+  #endregion
+
+	#region 재화
+	public int Money
+	{
+		get { return _gameData.Money; }
+		set { _gameData.Money = value; }
+	}
+	public int Diamond
+	{
+		get { return _gameData.Diamond; }
+		set { _gameData.Diamond = value; }
+	}
+  #endregion
+
+	public void Init()
+	{
+		
+	}
+	#region Save_Load
+	public string _path = Application.persistentDataPath + "/SaveData.json";
+	public void SaveGame()
+	{
+		string jsonStr = JsonUtility.ToJson(Managers.Game.SaveData);
+		File.WriteAllText(_path, jsonStr);
+	}
+
+	public bool LoadGame()
+	{
+		if (File.Exists(_path) == false)
+			return false;
+
+		string fileStr = File.ReadAllText(_path);
+		GameData data = JsonUtility.FromJson<GameData>(fileStr);
+		
+		if (data != null)
+			Managers.Game.SaveData = data;
+
+		return true;
+	}
+	
+	#endregion
 }
