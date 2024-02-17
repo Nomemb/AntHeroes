@@ -112,7 +112,7 @@ public class UI_PlayPopup : UI_Popup
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalDamageIncrease).SetInfo(UpgradeStatType.CriticalDamageAmplification);
 
 		RefreshUI();
-		StartCoroutine(SaveGame());
+		StartCoroutine(SaveGame(3.0f));
 		ShowTab(PlayTab.None);
 		
 		return true;
