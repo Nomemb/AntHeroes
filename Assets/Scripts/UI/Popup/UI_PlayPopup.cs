@@ -114,7 +114,9 @@ public class UI_PlayPopup : UI_Popup
 		RefreshUI();
 		StartCoroutine(SaveGame(3.0f));
 		ShowTab(PlayTab.None);
-		
+
+
+		Managers.UI.ShowPopupUI<UI_BattlePopup>();
 		return true;
 	}
 
