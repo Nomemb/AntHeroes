@@ -36,6 +36,15 @@ public class Define
         CriticalRate,
         CriticalDamageAmplification
     }
+    
+    public enum AnimState
+    {
+        None,
+        Idle,
+        Sweat,
+        Walking,
+        Attack,
+    }
 
     public const int Upgrade = 20003;
 }

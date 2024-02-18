@@ -32,6 +32,13 @@ public class SoundManager
 		}
 	}
 
+	public void Clear()
+	{
+		foreach (AudioSource audioSource in _audioSources)
+			audioSource.Stop();
+		_audioClips.Clear();
+	}
+
 	public bool Play(Define.Sound soundType, string path, float volume = 1.0f, float pitch = 1.0f)
 	{
 		if (string.IsNullOrEmpty(path))

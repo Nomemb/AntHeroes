@@ -113,6 +113,7 @@ public class UI_PlayPopup : UI_Popup
 
 		RefreshUI();
 		StartCoroutine(SaveGame(3.0f));
+		Managers.Sound.Play(Sound.Bgm, "Sound_Battle", volume: 0.2f);
 		ShowTab(PlayTab.None);
 
 
