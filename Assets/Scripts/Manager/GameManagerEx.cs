@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 using System.IO;
 
+[Serializable]
+public class PlayerState
+{
+	public AnimState state = AnimState.None;
+}
 public class GameData
 {
 	public int ServerNum;

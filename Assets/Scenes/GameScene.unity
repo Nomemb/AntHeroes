@@ -2025,6 +2025,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2536809032179522426, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298207145381280007, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
+      propertyPath: m_Name
+      value: EnemyHPText
+      objectReference: {fileID: 0}
     - target: {fileID: 6270024947633710650, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2104,6 +2112,10 @@ PrefabInstance:
     - target: {fileID: 6270024947633710650, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787959618061886872, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6965107389549783154, guid: ef88b3f17ca6fb5488ed2c23455106cb, type: 3}
       propertyPath: m_Name

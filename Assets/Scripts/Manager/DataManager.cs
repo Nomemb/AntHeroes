@@ -13,7 +13,8 @@ public class DataManager
 	public StartData Start { get; private set; }
 	
 	public Dictionary<int, StatData> Stats { get; private set; }
-	
+	public Dictionary<int, PlayerData> Players { get; private set; }
+
 	public Dictionary<int, TextData> Texts { get; private set; }
 
 	public void Init()
@@ -21,6 +22,7 @@ public class DataManager
 		Start = LoadSingleXml<StartData>("StartData");
 		
 		Stats = LoadXml<StatDataLoader, int, StatData>("StatData").MakeDic();
+		Players = LoadXml<PlayerDataLoader, int, PlayerData>("PlayerData").MakeDic();
 		Texts = LoadXml<TextDataLoader, int, TextData>("TextData").MakeDic();
 	}
 
