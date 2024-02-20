@@ -4,22 +4,4 @@
   </PlayerData>
   <PlayerData ID="1" nameID="5010" illustPath="Sprites/Main/Battle/character_6" battleIconPath="" spine="Spine/1. Sinib/Sinib_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="main_work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="idle_sweat" aniSweatSkin="main_sweat" maxhp="0" atk="0" promotion="">
   </PlayerData>
-  <PlayerData ID="2" nameID="5020" illustPath="Sprites/Main/Battle/battle_cha_1" battleIconPath="Sprites/Main/Battle/character_1" spine="Spine/2. Daeri/Deari_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="40" atk="10" promotion="Sprites/Comic4/Promotion1">
-
-  </PlayerData>
-  <PlayerData ID="3" nameID="5030" illustPath="Sprites/Main/Battle/battle_cha_2" battleIconPath="Sprites/Main/Battle/character_2" spine="Spine/3. Gwajang/Gwajanb_SkeletonData" aniIdle="main" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="200" atk="20" promotion="Sprites/Comic4/Promotion2">
-
-  </PlayerData>
-  <PlayerData ID="4" nameID="5040" illustPath="Sprites/Main/Battle/battle_cha_3" battleIconPath="Sprites/Main/Battle/character_3" spine="Spine/4. Bujang/Bujang_SkeletonData" aniIdle="main" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="main" maxhp="160000" atk="14000" promotion="Sprites/Comic4/Promotion3">
-
-  </PlayerData>
-  <PlayerData ID="5" nameID="5050" illustPath="Sprites/Main/Battle/battle_cha_4" battleIconPath="Sprites/Main/Battle/character_4" spine="Spine/5. Esa/Esa_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work_1" aniWorkingSkin="work_chair_1" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="240000" atk="23000" promotion="Sprites/Comic4/Promotion4">
-
-  </PlayerData>
-  <PlayerData ID="6" nameID="5060" illustPath="Sprites/Main/Battle/battle_cha_5" battleIconPath="Sprites/Main/Battle/character_5" spine="Spine/6. Sajang/Sajang_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="walk" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="360000" atk="34000" promotion="Sprites/Comic4/Promotion5">
-
-  </PlayerData>
-  <PlayerData ID="7" nameID="5070" illustPath="" battleIconPath="" spine="Spine/6. Sajang/cat_SkeletonData" aniIdle="animation" aniIdleSkin="default" aniWorking="animation" aniWorkingSkin="default" aniAttack="animation" aniAttackSkin="default" aniWalk="animation" aniWalkSkin="default" aniSweat="animation" aniSweatSkin="default" maxhp="0" atk="0" promotion="">
-
-  </PlayerData>
 </ArrayOfPlayerData>
