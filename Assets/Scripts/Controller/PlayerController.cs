@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Spine.Unity;
 using UnityEngine;
 using static Define;
+using static Managers;
 
 public class PlayerController : BaseController
 {
@@ -29,7 +30,7 @@ public class PlayerController : BaseController
 		Managers.Data.Players.TryGetValue(1, out _data);
 		_anim.skeletonDataAsset = Managers.Resource.Load<SkeletonDataAsset>(_data.spine);
 		State = AnimState.Attack;
-		_anim.timeScale = 0.7f;
+		//_anim.timeScale = 1f;
 
 		return true;
 	}
@@ -42,12 +43,12 @@ public class PlayerController : BaseController
 		{
 			case AnimState.Idle:
 				PlayAnimation(_data.aniIdle);
-				ChangeSkin(_data.aniIdleSkin);
+				ChangeSkin(_data.aniAttackSkin);
 				break;
 			
 			case AnimState.Walking:
 				PlayAnimation(_data.aniWorking);
-				ChangeSkin(_data.aniWorkingSkin);
+				ChangeSkin(_data.aniAttackSkin);
 				break;
 			
 			case AnimState.Attack:

@@ -41,7 +41,7 @@ public class EnemyData
 	[XmlAttribute]
 	public int atk;
 	[XmlAttribute]
-	public string promotion;
+	public int goldReward;
 }
 
 [Serializable, XmlRoot("ArrayOfEnemyData")]

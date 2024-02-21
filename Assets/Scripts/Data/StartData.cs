@@ -56,4 +56,6 @@ public class StartData
 	public int Money;
 	[XmlAttribute]
 	public int Diamond;
+	[XmlAttribute]
+	public int Stage;
 }

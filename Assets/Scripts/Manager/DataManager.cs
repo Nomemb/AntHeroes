@@ -15,8 +15,9 @@ public class DataManager
 	public Dictionary<int, StatData> Stats { get; private set; }
 	public Dictionary<int, PlayerData> Players { get; private set; }
 	public Dictionary<int, EnemyData> Enemies { get; private set; }
-
 	public Dictionary<int, TextData> Texts { get; private set; }
+	public Dictionary<int, StageData> Stages { get; private set; }
+
 
 	public void Init()
 	{
@@ -26,7 +27,8 @@ public class DataManager
 		Players = LoadXml<PlayerDataLoader, int, PlayerData>("PlayerData").MakeDic();
 		Enemies = LoadXml<EnemyDataLoader, int, EnemyData>("EnemyData").MakeDic();
 		Texts = LoadXml<TextDataLoader, int, TextData>("TextData").MakeDic();
-		
+		Stages = LoadXml<StageDataLoader, int, StageData>("StageData").MakeDic();
+
 	}
 
 	/// <summary>

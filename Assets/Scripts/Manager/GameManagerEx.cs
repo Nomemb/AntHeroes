@@ -47,7 +47,9 @@ public class GameData
 	#region 재화
 	public int Money;
 	public int Diamond;
-  #endregion
+	#endregion
+
+	public int Stage;
   #endregion
 }
 
@@ -198,16 +200,46 @@ public class GameManagerEx
 		get { return _gameData.Diamond; }
 		set { _gameData.Diamond = value; }
 	}
+
+	public int Stage
+	{
+		get { return _gameData.Stage; }
+		set { _gameData.Stage = value; }
+	}
   #endregion
 
 	public void Init()
 	{
 		StartData data = Managers.Data.Start;
-		if (File.Exists(_path))
-		{
-			string fileStr = File.ReadAllText(_path);
-		}
-
+		// 실제 서비스용
+		// if(LoadGame() == false)
+		// {
+		// 	ServerNum = data.ServerNum;
+		// 	Name = "Player";
+		//
+		// 	BaseAttackPower = 10;
+		// 	PvpAttackPower = 0;
+		// 	FishAttackPower = 10;
+		// 	CannonAttackPower = 10;
+		// 	AttackAmplification = 0;
+		// 	SkillDamageAmplification = 0;
+		// 	NormalDamageAmplification = 0;
+		// 	FishDamageAmplification = 0;
+		// 	TotalDamageIncrease = 0;
+		// 	TouchLightningPower = 20;
+		// 	AttackProportionalTouchLightningAdditionalDamage = 0;
+		// 	MaxHP = 100;
+		// 	HPRegen = 1;
+		// 	MaxHPAmplification = 0;
+		// 	CriticalRate = 0;
+		// 	CriticalDamageAmplification = 0;
+		// 	AttackSpeed = 1;
+		// 	Money = 150;
+		// 	Diamond = 0;
+		// 	Stage = 0;
+		// }
+		
+		// 테스트용
 		ServerNum = data.ServerNum;
 		Name = "Player";
 
@@ -230,8 +262,12 @@ public class GameManagerEx
 		AttackSpeed = 1;
 		Money = 150;
 		Diamond = 0;
-
+		Stage = 0;
+		
+		
 		HP = MaxHP;
+		SaveGame();
+
 	}
 	#region Save_Load
 	public string _path = Application.persistentDataPath + "/SaveData.json";
