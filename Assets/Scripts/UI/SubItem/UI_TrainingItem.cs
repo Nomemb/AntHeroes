@@ -150,7 +150,13 @@ public class UI_TrainingItem : UI_Base
 				Managers.Sound.Play(Sound.Effect, "Sound_UpgradeDone");
 
 				RefreshUI();
+
+				Managers.UI.FindPopup<UI_PlayPopup>()?.RefreshStat();
+				Managers.UI.FindPopup<UI_PlayPopup>()?.RefreshMoney();
+
 			}
+
+			_coolTime = StartCoroutine(CoStartUpgradeCoolTime(0.1f));
 		}
 	}
 
@@ -172,5 +178,11 @@ public class UI_TrainingItem : UI_Base
 	private bool CanUpgrade()
 	{
 		return Managers.Game.Money >= _statData.price;
+	}
+
+	IEnumerator CoStartUpgradeCoolTime(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		_coolTime = null;
 	}
 }

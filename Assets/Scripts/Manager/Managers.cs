@@ -56,6 +56,7 @@ public class Managers : MonoBehaviour
             
             s_resourceManager.Init();
             s_dataManager.Init();
+            s_gameManager.Init();
             s_soundManager.Init();
             // 프레임 60으로 설정
             Application.targetFrameRate = 60;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UIManager
@@ -63,6 +64,12 @@ public class UIManager
 		go.transform.localPosition = prefab.transform.position;
 		
 		return popup;
+	}
+	
+	public T FindPopup<T>() where T : UI_Popup
+	{
+		return _popupStack.FirstOrDefault(x => x.GetType() == typeof(T)) as T;
+		// return _popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
 	}
 
 	public void ClosePopupUI(UI_Popup popup)

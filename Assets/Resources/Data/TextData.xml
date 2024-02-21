@@ -9,5 +9,10 @@
   <TextData ID="6051" kor="공격 속도" />
   <TextData ID="6061" kor="치명타 확률" />
   <TextData ID="6071" kor="치명타 피해 증폭" />
+  <TextData ID="7001" kor="탕비실" />
+  <TextData ID="7011" kor="사무실" />
+  <TextData ID="7021" kor="회의실" />
+  <TextData ID="7031" kor="사장실" />
+  
   <TextData ID="20003" kor="업그레이드" />
 </ArrayOfTextData>

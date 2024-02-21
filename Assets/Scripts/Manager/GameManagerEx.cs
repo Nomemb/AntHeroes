@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 using System.IO;
 
+[Serializable]
+public class PlayerState
+{
+	public AnimState state = AnimState.None;
+}
 public class GameData
 {
 	public int ServerNum;
@@ -24,6 +30,7 @@ public class GameData
 	  #endregion
 
 	#region 방어_회복
+	public int HP;
 	public int MaxHP;											// 최대 체력	
 	public int HPRegen;											// HP 회복
 	public int MaxHPAmplification;								// 최대 체력 증폭
@@ -40,7 +47,9 @@ public class GameData
 	#region 재화
 	public int Money;
 	public int Diamond;
-  #endregion
+	#endregion
+
+	public int Stage;
   #endregion
 }
 
@@ -135,6 +144,11 @@ public class GameManagerEx
   #endregion
 
 	#region 방어_회복
+	public int HP
+	{
+		get { return _gameData.HP; }
+		set { _gameData.HP = value; }
+	}
 	public int MaxHP
 	{
 		get { return _gameData.MaxHP; }
@@ -186,11 +200,74 @@ public class GameManagerEx
 		get { return _gameData.Diamond; }
 		set { _gameData.Diamond = value; }
 	}
+
+	public int Stage
+	{
+		get { return _gameData.Stage; }
+		set { _gameData.Stage = value; }
+	}
   #endregion
 
 	public void Init()
 	{
+		StartData data = Managers.Data.Start;
+		// 실제 서비스용
+		// if(LoadGame() == false)
+		// {
+		// 	ServerNum = data.ServerNum;
+		// 	Name = "Player";
+		//
+		// 	BaseAttackPower = 10;
+		// 	PvpAttackPower = 0;
+		// 	FishAttackPower = 10;
+		// 	CannonAttackPower = 10;
+		// 	AttackAmplification = 0;
+		// 	SkillDamageAmplification = 0;
+		// 	NormalDamageAmplification = 0;
+		// 	FishDamageAmplification = 0;
+		// 	TotalDamageIncrease = 0;
+		// 	TouchLightningPower = 20;
+		// 	AttackProportionalTouchLightningAdditionalDamage = 0;
+		// 	MaxHP = 100;
+		// 	HPRegen = 1;
+		// 	MaxHPAmplification = 0;
+		// 	CriticalRate = 0;
+		// 	CriticalDamageAmplification = 0;
+		// 	AttackSpeed = 1;
+		// 	Money = 150;
+		// 	Diamond = 0;
+		// 	Stage = 0;
+		// }
 		
+		// 테스트용
+		ServerNum = data.ServerNum;
+		Name = "Player";
+
+		BaseAttackPower = 10;
+		PvpAttackPower = 0;
+		FishAttackPower = 10;
+		CannonAttackPower = 10;
+		AttackAmplification = 0;
+		SkillDamageAmplification = 0;
+		NormalDamageAmplification = 0;
+		FishDamageAmplification = 0;
+		TotalDamageIncrease = 0;
+		TouchLightningPower = 20;
+		AttackProportionalTouchLightningAdditionalDamage = 0;
+		MaxHP = 100;
+		HPRegen = 1;
+		MaxHPAmplification = 0;
+		CriticalRate = 0;
+		CriticalDamageAmplification = 0;
+		AttackSpeed = 1;
+		Money = 150;
+		Diamond = 0;
+		Stage = 0;
+		
+		
+		HP = MaxHP;
+		SaveGame();
+
 	}
 	#region Save_Load
 	public string _path = Application.persistentDataPath + "/SaveData.json";

@@ -112,9 +112,12 @@ public class UI_PlayPopup : UI_Popup
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalDamageIncrease).SetInfo(UpgradeStatType.CriticalDamageAmplification);
 
 		RefreshUI();
-		StartCoroutine(SaveGame());
+		StartCoroutine(SaveGame(3.0f));
+		Managers.Sound.Play(Sound.Bgm, "Sound_Battle", volume: 0.2f);
 		ShowTab(PlayTab.None);
-		
+
+
+		Managers.UI.ShowPopupUI<UI_BattlePopup>();
 		return true;
 	}
 
@@ -167,28 +170,28 @@ public class UI_PlayPopup : UI_Popup
 			case PlayTab.Hero:
 				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
 				GetObject((int)GameObjects.HeroTab).gameObject.SetActive(true);
-				GetButton((int)Buttons.HeroButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetButton((int)Buttons.HeroButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_19");
 				GetImage((int)Images.HeroBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
 				break;
 			
 			case PlayTab.Tower:
 				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
 				GetObject((int)GameObjects.TowerTab).gameObject.SetActive(true);
-				GetButton((int)Buttons.TowerButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetButton((int)Buttons.TowerButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_20");
 				GetImage((int)Images.TowerBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
 				break;
 			
 			case PlayTab.Summon:
 				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
 				GetObject((int)GameObjects.SummonTab).gameObject.SetActive(true);
-				GetButton((int)Buttons.SummonButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetButton((int)Buttons.SummonButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_19");
 				GetImage((int)Images.SummonBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
 				break;
 			
 			case PlayTab.Shop:
 				Managers.Sound.Play(Sound.Effect, "Sound_MainButton");
 				GetObject((int)GameObjects.ShopTab).gameObject.SetActive(true);
-				GetButton((int)Buttons.ShopButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_18");
+				GetButton((int)Buttons.ShopButton).image.sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_21");
 				GetImage((int)Images.ShopBox).sprite = Managers.Resource.Load<Sprite>("Sprites/Main/Common/btn_12");
 				break;
 			
@@ -203,14 +206,37 @@ public class UI_PlayPopup : UI_Popup
 		
 		ShowTab(_tab);
 		RefreshStat();
-		//RefreshMoney();
-		//RefreshTime();
+		RefreshMoney();
+		RefreshDiamond();
 	}
 
 	public void RefreshStat()
 	{
 		RefreshUpgradeButton();
-		
+	}
+
+	public void RefreshMoney(bool playSoundAndEffect = false)
+	{
+		if (GetText((int)Texts.MoneyBarText).text != Utils.GetMoneyString(_game.Money))
+		{
+			if (playSoundAndEffect)
+			{
+				Managers.Sound.Play(Sound.Effect, "Sound_Coin");
+			}
+			GetText((int)Texts.MoneyBarText).text = Utils.GetMoneyString(_game.Money);
+		}
+	}
+	
+	public void RefreshDiamond(bool playSoundAndEffect = false)
+	{
+		if (GetText((int)Texts.DiamondBarText).text != Utils.GetMoneyString(_game.Diamond))
+		{
+			if (playSoundAndEffect)
+			{
+				Managers.Sound.Play(Sound.Effect, "Sound_Coin");
+			}
+			GetText((int)Texts.DiamondBarText).text = Utils.GetMoneyString(_game.Diamond);
+		}
 	}
 
 	/// <summary>
@@ -221,6 +247,7 @@ public class UI_PlayPopup : UI_Popup
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_BaseAttackPower).RefreshUI();
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_TouchLightningPower).RefreshUI();
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackProportionalTouchLightningAdditionalDamage).RefreshUI();
+		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_MaxHP).RefreshUI();
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_HPRegen).RefreshUI();
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_AttackSpeed).RefreshUI();
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalRate).RefreshUI();

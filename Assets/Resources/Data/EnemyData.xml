@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEnemyData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">  
+  <EnemyData ID="0" nameID="5020" illustPath="Sprites/Main/Battle/battle_cha_1" battleIconPath="Sprites/Main/Battle/character_1" spine="Spine/2. Daeri/Deari_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="40" atk="10" goldReward="10">
+
+  </EnemyData>
+  <EnemyData ID="1" nameID="5030" illustPath="Sprites/Main/Battle/battle_cha_2" battleIconPath="Sprites/Main/Battle/character_2" spine="Spine/3. Gwajang/Gwajanb_SkeletonData" aniIdle="main" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="50" atk="15" goldReward="13">
+
+  </EnemyData>
+  <EnemyData ID="2" nameID="5040" illustPath="Sprites/Main/Battle/battle_cha_3" battleIconPath="Sprites/Main/Battle/character_3" spine="Spine/4. Bujang/Bujang_SkeletonData" aniIdle="main" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="main" maxhp="55" atk="20" goldReward="15">
+
+  </EnemyData>
+  <EnemyData ID="3" nameID="5050" illustPath="Sprites/Main/Battle/battle_cha_4" battleIconPath="Sprites/Main/Battle/character_4" spine="Spine/5. Esa/Esa_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work_1" aniWorkingSkin="work_chair_1" aniAttack="attack" aniAttackSkin="attack" aniWalk="idle" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="60" atk="21" goldReward="18">
+
+  </EnemyData>
+  <EnemyData ID="4" nameID="5060" illustPath="Sprites/Main/Battle/battle_cha_5" battleIconPath="Sprites/Main/Battle/character_5" spine="Spine/6. Sajang/Sajang_SkeletonData" aniIdle="idle" aniIdleSkin="main" aniWorking="work" aniWorkingSkin="work" aniAttack="attack" aniAttackSkin="attack" aniWalk="walk" aniWalkSkin="main" aniSweat="sweat" aniSweatSkin="sweat" maxhp="150" atk="25" goldReward="30">
+  </EnemyData>
+</ArrayOfEnemyData>

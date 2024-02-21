@@ -6,6 +6,10 @@ using UnityEngine;
 public class StartData
 {
 	[XmlAttribute]
+	public int ServerNum;
+	[XmlAttribute]
+	public string Name;
+	[XmlAttribute]
 	public int ID;
 	[XmlAttribute]
 	public int BaseAttackPower;									// 기본 공격력
@@ -30,7 +34,8 @@ public class StartData
 	[XmlAttribute]
 	public int AttackProportionalTouchLightningAdditionalDamage;// 공격력 비례 터치번개 추가 피해
 
-	
+	[XmlAttribute]
+	public int HP;
 	[XmlAttribute]
 	public int MaxHP;											// 최대 체력	
 	[XmlAttribute]
@@ -45,10 +50,12 @@ public class StartData
 	public int CriticalDamageAmplification;						// 치명타 피해 증폭
 	
 	[XmlAttribute]
-	public int AttackSpeed;											// 공격 속도
+	public int AttackSpeed;										// 공격 속도
 
 	[XmlAttribute]
 	public int Money;
 	[XmlAttribute]
 	public int Diamond;
+	[XmlAttribute]
+	public int Stage;
 }
