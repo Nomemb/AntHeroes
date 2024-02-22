@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCollectData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CollectData Level="1" CollectDamage="10" Reward="10" Hex="#FFFFFFFF"/>
+  <CollectData Level="2" CollectDamage="15" Reward="10" Hex="#FFEEFFFF"/>
+  <CollectData Level="3" CollectDamage="20" Reward="10" Hex="#FFDDFFFF"/>
+  <CollectData Level="4" CollectDamage="25" Reward="10" Hex="#FFCCFFFF"/>
+  <CollectData Level="5" CollectDamage="30" Reward="10" Hex="#FFBBFFFF"/>
+  <CollectData Level="6" CollectDamage="35" Reward="10" Hex="#FFAAFFFF"/>
+  <CollectData Level="7" CollectDamage="40" Reward="10" Hex="#FF99FFFF"/>
+  <CollectData Level="8" CollectDamage="45" Reward="10" Hex="#FF88FFFF"/>
+  <CollectData Level="9" CollectDamage="50" Reward="10" Hex="#FF77FFFF"/>
+  <CollectData Level="10" CollectDamage="55" Reward="10" Hex="#FF66FFFF"/>
+  <CollectData Level="11" CollectDamage="60" Reward="10" Hex="#FF55FFFF"/>
+  <CollectData Level="12" CollectDamage="65" Reward="10" Hex="#FF44FFFF"/>
+  <CollectData Level="13" CollectDamage="70" Reward="10" Hex="#FF33FFFF"/>
+  <CollectData Level="14" CollectDamage="75" Reward="10" Hex="#FF22FFFF"/>
+  <CollectData Level="15" CollectDamage="80" Reward="10" Hex="#FF11FFFF"/>
+  <CollectData Level="16" CollectDamage="85" Reward="10" Hex="#FF00FFFF"/>
+  <CollectData Level="17" CollectDamage="90" Reward="10" Hex="#FEEFFFFF"/>
+  <CollectData Level="18" CollectDamage="95" Reward="10" Hex="#FEDEFFFF"/>
+  <CollectData Level="19" CollectDamage="100" Reward="10" Hex="#FECDDDFF"/>
+  <CollectData Level="20" CollectDamage="105" Reward="10" Hex="#FEBCFFFF"/>
+</ArrayOfCollectData>

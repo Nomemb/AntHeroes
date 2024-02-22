@@ -152,8 +152,9 @@ public class UI_BattlePopup : UI_Popup
 			if(Managers.Data.Enemies.TryGetValue(_stageData.enemyData[_waveCount].enemyID, out _enemyData) == false)
 				Debug.Log("EnemyData not Found");
 		}
-
+		Debug.Log($"{_enemyData.maxhp} , {_enemyData.atk}");
 		_enemyData = EnhanceEnemy(_enemyData);
+		Debug.Log($"->{_enemyData.maxhp} , {_enemyData.atk}");
 		RefreshUI();
 		
 		_enemy.GetOrAddComponent<PlayerController>().SetSkeletonAsset(_enemyData.spine);
@@ -288,7 +289,7 @@ public class UI_BattlePopup : UI_Popup
 
 	private int GetBaseAttackDamage()
 	{
-		return (int)(Managers.Game.BaseAttackPower * (1 + Managers.Game.AttackAmplification) + Managers.Game.FishAttackPower * (1 + Managers.Game.FishDamageAmplification));
+		return (int)(Managers.Game.BaseAttackPower * (1 + Managers.Game.AttackAmplification) + Managers.Game.CollectAttackPower * (1 + Managers.Game.FishDamageAmplification));
 	}
 
 	private void UpdateVictory()
@@ -305,6 +306,7 @@ public class UI_BattlePopup : UI_Popup
 		_enemy.gameObject.SetActive(false);
 		Managers.Game.Stage -= 1;
 		Managers.Game.HP = Managers.Game.MaxHP;
+		_waveCount = 0;
 		
 		BattleInit();
 	}
@@ -334,10 +336,14 @@ public class UI_BattlePopup : UI_Popup
 
 	private EnemyData EnhanceEnemy(EnemyData enemyData)
 	{
-		enemyData.maxhp = (int)(enemyData.maxhp * Math.Pow(_stageData.enhancementStatus, _stageNum%10));
-		enemyData.atk = (int)(enemyData.atk * Math.Pow(_stageData.enhancementStatus, _stageNum%10));
+		EnemyData newData = new EnemyData();
+		double magnificationStatus = 1 + _stageData.enhancementStatus * (_stageNum * 0.1 + 1);
+		double magnificationReward = 1 + _stageData.enhancementReward * (_stageNum * 0.1 + 1);
 		
-		enemyData.goldReward = (int)(enemyData.goldReward * Math.Pow(_stageData.enhancementReward, _stageNum%10));
-		return enemyData;
+		newData.maxhp = (int)(enemyData.maxhp * Math.Pow(magnificationStatus, _stageNum%10 + 1));
+		newData.atk = (int)(enemyData.atk * Math.Pow(magnificationStatus, _stageNum%10 + 1));
+		
+		newData.goldReward = (int)(enemyData.goldReward * Math.Pow(magnificationReward, _stageNum%10));
+		return newData;
 	}
 }

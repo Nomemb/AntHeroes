@@ -13,6 +13,23 @@
   <TextData ID="7011" kor="사무실" />
   <TextData ID="7021" kor="회의실" />
   <TextData ID="7031" kor="사장실" />
+  <TextData ID="10001" kor="기본 공격력"/>
+  <TextData ID="10002" kor="Pvp 공격력"/>
+  <TextData ID="10003" kor="수집품 공격력"/>
+  <TextData ID="10004" kor="대포 공격력"/>
+  <TextData ID="10005" kor="공격력 증폭"/>
+  <TextData ID="10006" kor="스킬 피해 증폭"/>
+  <TextData ID="10007" kor="일반 피해 증폭"/>
+  <TextData ID="10008" kor="생선 피해 증폭"/>
+  <TextData ID="10009" kor="모든 피해량 증가"/>
+  <TextData ID="10010" kor="터치번개 피해"/>
+  <TextData ID="10011" kor="공격력 비례 터치번개 추가 피해"/>
+  <TextData ID="10012" kor="최대 체력"/>
+  <TextData ID="10013" kor="HP 회복"/>
+  <TextData ID="10014" kor="최대 체력 증폭"/>
+  <TextData ID="10015" kor="치명타 확률"/>
+  <TextData ID="10016" kor="치명타 피해 증폭"/>
+  <TextData ID="10017" kor="공격 속도"/>
   
   <TextData ID="20003" kor="업그레이드" />
 </ArrayOfTextData>

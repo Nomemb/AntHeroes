@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStageData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <StageData ID="0" nameID="7001" enhancementStatus="1.05" enhancementReward="1.02">
+  <StageData ID="0" nameID="7001" enhancementStatus="0.1" enhancementReward="0.05">
     <enemyData>
       <StageEnemyData enemyID="0"/>
       <StageEnemyData enemyID="0"/>
@@ -8,7 +8,7 @@
     </enemyData>
   </StageData>
 
-  <StageData ID="1" nameID="7011" enhancementStatus="1.1" enhancementReward="1.07">
+  <StageData ID="1" nameID="7011" enhancementStatus="0.2" enhancementReward="0.1">
     <enemyData>
       <StageEnemyData enemyID="0"/>
       <StageEnemyData enemyID="1"/>
@@ -16,7 +16,7 @@
     </enemyData>
   </StageData>
 
-  <StageData ID="2" nameID="7021" enhancementStatus="1.15" enhancementReward="1.1">
+  <StageData ID="2" nameID="7021" enhancementStatus="0.3" enhancementReward="0.15">
     <enemyData>
       <StageEnemyData enemyID="1"/>
       <StageEnemyData enemyID="2"/>
@@ -24,7 +24,7 @@
     </enemyData>
   </StageData>
 
-  <StageData ID="3" nameID="7031" enhancementStatus="1.2" enhancementReward="1.15">
+  <StageData ID="3" nameID="7031" enhancementStatus="0.4" enhancementReward="0.2">
     <enemyData>
       <StageEnemyData enemyID="2"/>
       <StageEnemyData enemyID="3"/>
