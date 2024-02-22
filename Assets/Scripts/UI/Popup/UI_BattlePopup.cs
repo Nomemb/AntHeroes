@@ -86,6 +86,7 @@ public class UI_BattlePopup : UI_Popup
 
 		_player = GetObject((int)GameObjects.Player);
 		_enemy = GetObject((int)GameObjects.Enemy);
+		
 		_playerController = _player.GetOrAddComponent<PlayerController>();
 		_block = GetObject((int)GameObjects.Block);
 		_enemyProjectile = GetObject((int)GameObjects.EnemyProjectile);
