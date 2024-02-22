@@ -45,6 +45,7 @@ public class GameData
 	public int AttackSpeed;										// 공격 속도
 	public int MakeCollectionLevel;								// 기본 생산 레벨
 	public int MaxCollectionLevel;								// 최대 생산 레벨
+  #endregion
 
 	#region 재화
 	public int Money;
@@ -55,7 +56,6 @@ public class GameData
 
 	#region 수집품
 	public List<int> CollectItems;
-  #endregion
   #endregion
 }
 

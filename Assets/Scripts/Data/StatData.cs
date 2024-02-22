@@ -10,7 +10,7 @@ public class StatData
 	[XmlAttribute]
 	public int ID;					// 스탯 번호
 	[XmlAttribute]
-	public UpgradeStatType type;			// 이름
+	public UpgradeStatType type;	// 이름
 	[XmlAttribute]
 	public int nameID;				// 이름 아이디
 	[XmlAttribute]

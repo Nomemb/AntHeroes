@@ -10,8 +10,6 @@ public class TextData
 	public int ID;
 	[XmlAttribute]
 	public string kor;
-	// [XmlAttribute]
-	// public string eng;
 }
 
 [Serializable, XmlRoot("ArrayOfTextData")]
