@@ -18,7 +18,7 @@ public class GameData
 	#region 공격
 	public int BaseAttackPower;									// 기본 공격력
 	public int PvpAttackPower;									// Pvp 공격력
-	public int FishAttackPower;									// 생선 공격력
+	public int CollectAttackPower;								// 수집품 공격력
 	public int CannonAttackPower;								// 대포 공격력
 	public float AttackAmplification;							// 공격력 증폭
 	public float SkillDamageAmplification;						// 스킬 피해 증폭
@@ -43,6 +43,8 @@ public class GameData
 
 	#region 속도_생산_기타
 	public int AttackSpeed;										// 공격 속도
+	public int MakeCollectionLevel;								// 기본 생산 레벨
+	public int MaxCollectionLevel;								// 최대 생산 레벨
 
 	#region 재화
 	public int Money;
@@ -50,6 +52,10 @@ public class GameData
 	#endregion
 
 	public int Stage;
+
+	#region 수집품
+	public List<int> CollectItems;
+  #endregion
   #endregion
 }
 
@@ -85,10 +91,10 @@ public class GameManagerEx
 		set { _gameData.PvpAttackPower = value; }
 	}
 	
-	public int FishAttackPower
+	public int CollectAttackPower
 	{
-		get { return _gameData.FishAttackPower; }
-		set { _gameData.FishAttackPower = value; }
+		get { return _gameData.CollectAttackPower; }
+		set { _gameData.CollectAttackPower = value; }
 	}
 	
 	public int CannonAttackPower
@@ -187,6 +193,18 @@ public class GameManagerEx
 		get { return _gameData.AttackSpeed; }
 		set { _gameData.AttackSpeed = value; }
 	}
+
+	public int MakeCollectionLevel
+	{
+		get { return _gameData.MakeCollectionLevel; }
+		set { _gameData.MakeCollectionLevel = value; }
+	}
+
+	public int MaxCollectionLevel
+	{
+		get { return _gameData.MaxCollectionLevel; }
+		set { _gameData.MaxCollectionLevel = value; }
+	}
   #endregion
 
 	#region 재화
@@ -208,62 +226,74 @@ public class GameManagerEx
 	}
   #endregion
 
+	#region 생산품
+	public List<int> CollectItems
+	{
+		get{ return _gameData.CollectItems; }
+		set{ _gameData.CollectItems = value; }
+	}
+  #endregion
 	public void Init()
 	{
 		StartData data = Managers.Data.Start;
-		// 실제 서비스용
-		// if(LoadGame() == false)
-		// {
-		// 	ServerNum = data.ServerNum;
-		// 	Name = "Player";
+		//실제 서비스용
+		if(LoadGame() == false)
+		{
+			ServerNum = data.ServerNum;
+			Name = "Player";
+		
+			BaseAttackPower = 10;
+			PvpAttackPower = 0;
+			CollectAttackPower = 10;
+			CannonAttackPower = 10;
+			AttackAmplification = 0;
+			SkillDamageAmplification = 0;
+			NormalDamageAmplification = 0;
+			FishDamageAmplification = 0;
+			TotalDamageIncrease = 0;
+			TouchLightningPower = 20;
+			AttackProportionalTouchLightningAdditionalDamage = 0;
+			MaxHP = 100;
+			HPRegen = 1;
+			MaxHPAmplification = 0;
+			CriticalRate = 0;
+			CriticalDamageAmplification = 0;
+			AttackSpeed = 1;
+			MakeCollectionLevel = 1;
+			MaxCollectionLevel = 1;
+			Money = 150;
+			Diamond = 0;
+			Stage = 0;
+			CollectItems = new List<int>();
+		}
+		
+		//테스트용
+		// ServerNum = data.ServerNum;
+		// Name = "Player";
 		//
-		// 	BaseAttackPower = 10;
-		// 	PvpAttackPower = 0;
-		// 	FishAttackPower = 10;
-		// 	CannonAttackPower = 10;
-		// 	AttackAmplification = 0;
-		// 	SkillDamageAmplification = 0;
-		// 	NormalDamageAmplification = 0;
-		// 	FishDamageAmplification = 0;
-		// 	TotalDamageIncrease = 0;
-		// 	TouchLightningPower = 20;
-		// 	AttackProportionalTouchLightningAdditionalDamage = 0;
-		// 	MaxHP = 100;
-		// 	HPRegen = 1;
-		// 	MaxHPAmplification = 0;
-		// 	CriticalRate = 0;
-		// 	CriticalDamageAmplification = 0;
-		// 	AttackSpeed = 1;
-		// 	Money = 150;
-		// 	Diamond = 0;
-		// 	Stage = 0;
-		// }
-		
-		// 테스트용
-		ServerNum = data.ServerNum;
-		Name = "Player";
-
-		BaseAttackPower = 10;
-		PvpAttackPower = 0;
-		FishAttackPower = 10;
-		CannonAttackPower = 10;
-		AttackAmplification = 0;
-		SkillDamageAmplification = 0;
-		NormalDamageAmplification = 0;
-		FishDamageAmplification = 0;
-		TotalDamageIncrease = 0;
-		TouchLightningPower = 20;
-		AttackProportionalTouchLightningAdditionalDamage = 0;
-		MaxHP = 100;
-		HPRegen = 1;
-		MaxHPAmplification = 0;
-		CriticalRate = 0;
-		CriticalDamageAmplification = 0;
-		AttackSpeed = 1;
-		Money = 150;
-		Diamond = 0;
-		Stage = 0;
-		
+		// BaseAttackPower = 10;
+		// PvpAttackPower = 0;
+		// CollectAttackPower = 10;
+		// CannonAttackPower = 10;
+		// AttackAmplification = 0;
+		// SkillDamageAmplification = 0;
+		// NormalDamageAmplification = 0;
+		// FishDamageAmplification = 0;
+		// TotalDamageIncrease = 0;
+		// TouchLightningPower = 20;
+		// AttackProportionalTouchLightningAdditionalDamage = 0;
+		// MaxHP = 100;
+		// HPRegen = 1;
+		// MaxHPAmplification = 0;
+		// CriticalRate = 0;
+		// CriticalDamageAmplification = 0;
+		// AttackSpeed = 1;
+		// MakeCollectionLevel = 1;
+		// MaxCollectionLevel = 1;
+		// Money = 150;
+		// Diamond = 0;
+		// Stage = 0;
+		// CollectItems = new List<int>();
 		
 		HP = MaxHP;
 		SaveGame();
@@ -284,9 +314,15 @@ public class GameManagerEx
 
 		string fileStr = File.ReadAllText(_path);
 		GameData data = JsonUtility.FromJson<GameData>(fileStr);
-		
+
 		if (data != null)
+		{
 			Managers.Game.SaveData = data;
+			if (Managers.Data.Collections.TryGetValue(Managers.Game.MaxCollectionLevel, out CollectData collectData) == true)
+				Managers.Game.CollectAttackPower = collectData.CollectDamage;
+
+			CollectItems.Sort((a,b) => b.CompareTo(a));
+		}
 
 		return true;
 	}

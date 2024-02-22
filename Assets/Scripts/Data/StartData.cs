@@ -16,7 +16,7 @@ public class StartData
 	[XmlAttribute]
 	public int PvpAttackPower;									// Pvp 공격력
 	[XmlAttribute]
-	public int FishAttackPower;									// 생선 공격력
+	public int CollectAttackPower;								// 수집품 공격력
 	[XmlAttribute]
 	public int CannonAttackPower;								// 대포 공격력
 	[XmlAttribute]
@@ -51,6 +51,8 @@ public class StartData
 	
 	[XmlAttribute]
 	public int AttackSpeed;										// 공격 속도
+	[XmlAttribute]
+	public int MakeCollectionLevel;								// 기본 생산 레벨
 
 	[XmlAttribute]
 	public int Money;
