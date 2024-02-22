@@ -11,6 +11,8 @@ public class UI_PlayPopup : UI_Popup
 		NameText,
 		MoneyBarText,
 		DiamondBarText,
+		MaxCollectLevelText,
+		MakeCollectLevelText,
 		TrainingButtonText,
 		HeroButtonText,
 		TowerButtonText,
@@ -27,8 +29,8 @@ public class UI_PlayPopup : UI_Popup
 		SummonButton,
 		ShopButton,
 		MenuButton,
-		MaxFishButton,
-		CurFishButton,
+		MaxCollectLevelButton,
+		MakeCollectLevelButton,
 		GenerateButton,
 		SortButton,
 		AutoGenerateButton,
@@ -39,6 +41,9 @@ public class UI_PlayPopup : UI_Popup
 		DiamondBarFill,
 		MoneyBarFill,
 		NoticeImage,
+		MaxCollectLevelImage,
+		MakeCollectLevelImage,
+		
 		TrainingBox,
 		HeroBox,
 		TowerBox,
@@ -48,6 +53,7 @@ public class UI_PlayPopup : UI_Popup
 
 	enum GameObjects
 	{
+		CollectItemBowl,
 		TrainingTab,
 		HeroTab,
 		TowerTab,
@@ -66,6 +72,12 @@ public class UI_PlayPopup : UI_Popup
 		Shop
 	}
 
+	public enum Button
+	{
+		MaxCollectLevelButton,
+		MakeCollectLevelButton,
+	}
+
 	// 업그레이드 능력치
 	enum TrainingItems
 	{
@@ -79,6 +91,7 @@ public class UI_PlayPopup : UI_Popup
 		UI_TrainingItem_CriticalDamageIncrease,
 	}
 	PlayTab _tab = PlayTab.None;
+	UI_CollectItemBowl _collectItemBowl;
 
 	GameManagerEx _game;
 	public override bool Init()
@@ -93,7 +106,8 @@ public class UI_PlayPopup : UI_Popup
 		BindObject(typeof(GameObjects));
 		BindImage(typeof(Images));
 		Bind<UI_TrainingItem>(typeof(TrainingItems));
-		
+
+		GetText((int)Texts.NameText).text = _game.Name;
 		GetButton((int)Buttons.TrainingButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Training));
 		GetButton((int)Buttons.HeroButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Hero));
 		GetButton((int)Buttons.TowerButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Tower));
@@ -101,6 +115,8 @@ public class UI_PlayPopup : UI_Popup
 		GetButton((int)Buttons.ShopButton).gameObject.BindEvent(()=> ShowTab(PlayTab.Shop));
 		
 		GetButton((int)Buttons.PlayerInfoButton).gameObject.BindEvent(OnClickPlayerInfoButton);
+		GetButton((int)Buttons.GenerateButton).gameObject.BindEvent(OnClickGenerateButton);
+		GetButton((int)Buttons.SortButton).gameObject.BindEvent(OnClickSortButton);
 		
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_BaseAttackPower).SetInfo(UpgradeStatType.BaseAttackPower);
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_TouchLightningPower).SetInfo(UpgradeStatType.TouchLightningPower);
@@ -111,6 +127,7 @@ public class UI_PlayPopup : UI_Popup
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalRate).SetInfo(UpgradeStatType.CriticalRate);
 		Get<UI_TrainingItem>((int)TrainingItems.UI_TrainingItem_CriticalDamageIncrease).SetInfo(UpgradeStatType.CriticalDamageAmplification);
 
+		_collectItemBowl = GetObject((int)GameObjects.CollectItemBowl).GetComponent<UI_CollectItemBowl>();
 		RefreshUI();
 		StartCoroutine(SaveGame(3.0f));
 		Managers.Sound.Play(Sound.Bgm, "Sound_Battle", volume: 0.2f);
@@ -214,6 +231,18 @@ public class UI_PlayPopup : UI_Popup
 	{
 		RefreshUpgradeButton();
 	}
+	
+	public void RefreshMaxLevel()
+	{
+		GetImage((int)Images.MaxCollectLevelImage).color = Utils.HexColor(_collectItemBowl.MaxLevelData.Hex);
+		GetText((int)Texts.MaxCollectLevelText).text = $"최대 레벨 : {_collectItemBowl.MaxLevelData.Level}";
+	}
+	public void RefreshMakeLevel()
+	{
+		GetImage((int)Images.MakeCollectLevelImage).color = Utils.HexColor(_collectItemBowl.MakeLevelData.Hex);
+		GetText((int)Texts.MakeCollectLevelText).text = $"생산 레벨 : {_collectItemBowl.MakeLevelData.Level}";
+	}
+	
 
 	public void RefreshMoney(bool playSoundAndEffect = false)
 	{
@@ -257,7 +286,17 @@ public class UI_PlayPopup : UI_Popup
 	private void OnClickPlayerInfoButton()
 	{
 		Managers.Sound.Play(Sound.Effect, "Sound_FolderItemClick");
-		//Managers.UI.ShowPopupUI<UI_PlayerInfoPopup>();
+		Managers.UI.ShowPopupUI<UI_PlayerInfoPopup>();
+	}
+
+	private void OnClickGenerateButton()
+	{
+		_collectItemBowl.GenerateCollectItem();
+	}
+
+	private void OnClickSortButton()
+	{
+		_collectItemBowl.SortCollectItems();
 	}
 	IEnumerator SaveGame(float interval = 1.0f)
 	{
