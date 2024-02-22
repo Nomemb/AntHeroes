@@ -82,4 +82,13 @@ public class Utils
     {
         return $"{value}";
     }
+
+    public static Color HexColor(string hex)
+    {
+        Color color;
+        if (ColorUtility.TryParseHtmlString(hex, out color))
+            return color;
+        
+        return Color.white;
+    }
 }
